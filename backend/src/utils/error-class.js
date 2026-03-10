@@ -26,9 +26,23 @@ class ForbiddenError extends AppError {
     }
 }
 
+class DuplicateEntryError extends AppError {
+    constructor(name = 'CONFLICT_ERROR', message = 'Resource already exists') {
+        super(409, name, message)
+    }
+}
+
+class QuerySyntaxError extends AppError {
+    constructor(name = 'SQL_SYNTAX_ERROR', message) {
+        super(500, name, message)
+    }
+}
+
 module.exports = {
     AppError,
     NotFoundError,
     BadRequestError,
-    ForbiddenError
+    ForbiddenError,
+    DuplicateEntryError,
+    QuerySyntaxError
 }
