@@ -25,8 +25,8 @@ const executeQuery = async (query, params = {}) => {
     }
 
     try {
-        const result = await pool.execute(query, params)  //returns an array [results, fields, errors(if any)]
-        return result
+        const [results] = await pool.execute(query, params)  //returns an array [results, fields]
+        return results
 
     } catch (error) {
         if (error.code === 'ER_PARSE_ERROR') {
