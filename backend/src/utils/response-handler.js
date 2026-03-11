@@ -5,7 +5,7 @@ const responseHandler = (
     message = "", 
     data = null) => {
         return res.status(statusCode).json({
-            success: true,
+            success,
             statusCode,
             message,
             data
