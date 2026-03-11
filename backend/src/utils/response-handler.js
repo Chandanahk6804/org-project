@@ -1,5 +1,6 @@
 const responseHandler = (
     res,
+    success = true,
     statusCode = 200, 
     message = "", 
     data = null) => {
