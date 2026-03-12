@@ -1,4 +1,4 @@
-const executeQuery = require("../../../config/db-connection")
+const {executeQuery} = require("../../../config/db-connection")
 const { AppError } = require("../../../utils/error-class")
 const responseHandler = require("../../../utils/response-handler")
 
