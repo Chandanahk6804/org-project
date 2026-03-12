@@ -54,4 +54,33 @@ const executeQuery = async (query, params = {}) => {
     }
 }
 
-module.exports = executeQuery
+
+const executeTransaction = async (callback) => {
+
+    if(!pool) {
+        pool = getPool()
+    }
+
+    const con = await pool.getConnection()
+
+    try {
+        await con.beginTransaction()
+        const results = await callback(con)
+        con.commit()
+        return results
+    }
+    catch(error) {
+        await con.rollback()
+        throw new AppError(
+            false,
+            "Database Error",
+            error.message
+        )
+    }
+    
+}
+
+module.exports = {
+    executeQuery,
+    executeTransaction
+}
