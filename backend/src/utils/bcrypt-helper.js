@@ -9,9 +9,22 @@ async function hashPassword(password) {
         throw new AppError(
             false,
             'Server error',
-            'Internal Server error'
+            error.message || 'Internal Server error'
         )
     }
 }
 
-module.exports = hashPassword
+async function verifyPassword(password, hashedPassword) {
+    try {
+        return bcrypt.compare(password, hashedPassword)
+    }
+    catch(error) {
+        throw new AppError(
+            false,
+            'Server error',
+            error.message || 'Internal Server error'
+        )
+    }
+}
+
+module.exports = {hashPassword, verifyPassword}
