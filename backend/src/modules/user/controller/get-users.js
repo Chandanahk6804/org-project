@@ -10,7 +10,7 @@ const getUsersQuery = `
     FROM user`
 
 
-const getAllUsers = async (req, res) => {
+const getUsers = async (req, res) => {
     const results = await executeQuery(getUsersQuery)
     
     if(results.length === 0 || !results) {
@@ -30,4 +30,4 @@ const getAllUsers = async (req, res) => {
     )
 }
 
-module.exports = getAllUsers
+module.exports = getUsers
